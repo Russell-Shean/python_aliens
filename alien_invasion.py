@@ -24,21 +24,30 @@ class AlienInvasion:
 		# This sets the title that shoows across the top of the window?
 		pygame.display.set_caption("The Aliens are invading!       Can you help??")
 
+		# set a new background color
+		self.bg_color = (175, 238, 238)
+
 
 	def run_game(self):
 		"""This method actually starts and runs the game inside the window"""
 
 		while True:
 
-			# here we watch for a use input telling pygame to quit the game
+			# here we watch for events that occur durin the game and execute depending on what they are
 			for event in pygame.event.get():
+
+				# If the event is quit we quit the game
 				if event.type == pygame.QUIT:
 
 					# This must be a system command to exit the current process
 					sys.exit()
 
 
-			# Freeze the last screen
+			# actually update the screen color
+			self.screen.fill(self.bg_color)
+
+
+			# draw the most recent screen
 			pygame.display.flip()
 
 

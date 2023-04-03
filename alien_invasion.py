@@ -4,6 +4,9 @@
 import sys
 import pygame
 
+# Import the Settings class from the settings module
+from settings import Settings
+
 # Define an alien invasion class
 class AlienInvasion:
 	"""The is the overall class for the entire game"""
@@ -16,16 +19,23 @@ class AlienInvasion:
 		pygame.init()
 
 
+		# add an instance of the Settings() class to self
+		self.settings = Settings()
+
+
 		# This must set the screen size or something
 		# Whytwo sets of parenthesis??
+		#self.screen = pygame.display.set_mode((1920,1080))
 
-		self.screen = pygame.display.set_mode((1920,1080))
+		# New plan use settings to define screen size:
+		self.screen = pygame.display.set_mode(
+			(self.settings.screen_width, self.settings.screen_width))
 
 		# This sets the title that shoows across the top of the window?
 		pygame.display.set_caption("The Aliens are invading!       Can you help??")
 
 		# set a new background color
-		self.bg_color = (175, 238, 238)
+		self.bg_color = (self.settings.bg_color)
 
 
 	def run_game(self):

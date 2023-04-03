@@ -6,6 +6,7 @@ import pygame
 
 # Import the Settings class from the settings module
 from settings import Settings
+from ship import Ship
 
 # Define an alien invasion class
 class AlienInvasion:
@@ -37,6 +38,9 @@ class AlienInvasion:
 		# set a new background color
 		self.bg_color = (self.settings.bg_color)
 
+		# Add the Ship class as an attribute to the game
+		self.ship = Ship(self)
+
 
 	def run_game(self):
 		"""This method actually starts and runs the game inside the window"""
@@ -55,6 +59,11 @@ class AlienInvasion:
 
 			# actually update the screen color
 			self.screen.fill(self.bg_color)
+
+
+			# draw the ship
+
+			self.ship.blitme()
 
 
 			# draw the most recent screen

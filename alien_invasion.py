@@ -47,27 +47,34 @@ class AlienInvasion:
 
 		while True:
 
-			# here we watch for events that occur durin the game and execute depending on what they are
-			for event in pygame.event.get():
+			# creating a check events method
+			self._check_events()
+			# update events
+			self._update_screen()
 
-				# If the event is quit we quit the game
-				if event.type == pygame.QUIT:
+	def _check_events(self):
+		"""respond to key presses and mouse events"""
 
-					# This must be a system command to exit the current process
-					sys.exit()
+		# here we watch for events that occur durin the game and execute depending on what they are
+		for event in pygame.event.get():
 
+			# If the event is quit we quit the game
+			if event.type == pygame.QUIT:
 
-			# actually update the screen color
-			self.screen.fill(self.bg_color)
+				# This must be a system command to exit the current process
+				sys.exit()
 
+	def _update_screen(self):
+		"update images on screen and flip to next screen"
 
-			# draw the ship
+		# actually update the screen color
+		self.screen.fill(self.bg_color)
 
-			self.ship.blitme()
+		# draw the ship
+		self.ship.blitme()
 
-
-			# draw the most recent screen
-			pygame.display.flip()
+		# draw the most recent screen
+		pygame.display.flip()
 
 
 

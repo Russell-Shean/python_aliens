@@ -64,6 +64,17 @@ class AlienInvasion:
 				# This must be a system command to exit the current process
 				sys.exit()
 
+			# watch for key presses
+			elif event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_RIGHT:
+					# Move the ship to the right
+					self.ship.rect.x += 1
+
+
+
+
+
+
 	def _update_screen(self):
 		"update images on screen and flip to next screen"
 

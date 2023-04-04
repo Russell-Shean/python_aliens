@@ -51,6 +51,8 @@ class AlienInvasion:
 			self._check_events()
 			# update events
 			self._update_screen()
+			# move the ship to the right
+			self.ship.update_position()
 
 	def _check_events(self):
 		"""respond to key presses and mouse events"""
@@ -68,7 +70,11 @@ class AlienInvasion:
 			elif event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_RIGHT:
 					# Move the ship to the right
-					self.ship.rect.x += 1
+					self.ship.moving_right =True
+
+			elif event.type == pygame.KEYUP:
+				if event.key == pygame.K_RIGHT:
+					self.ship.moving_right = False
 
 
 

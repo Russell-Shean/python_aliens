@@ -21,6 +21,16 @@ class Ship:
 		# always start ships at the bottom of the screen
 		self.rect.midbottom = self.screen_rect.midbottom
 
+
+		# add a flag to check for movement
+		self.moving_right = False
+
+
+	def update_position(self):
+		"""update the ship's position if the moving flag is true"""
+		if self.moving_right:
+			self.rect += 1
+
 	
 	def blitme(self):
 		"""draw the gnome at its starting location"""

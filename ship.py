@@ -24,12 +24,16 @@ class Ship:
 
 		# add a flag to check for movement
 		self.moving_right = False
+		self.moving_left = False
 
 
 	def update_position(self):
 		"""update the ship's position if the moving flag is true"""
 		if self.moving_right:
 			self.rect.x += 1
+
+		if self.moving_left:
+			self.rect.x -= 1
 
 	
 	def blitme(self):

@@ -103,6 +103,9 @@ class AlienInvasion:
 			# Move ship down
 			self.ship.moving_down = True
 
+		elif event.key ==pygame.K_x:
+			sys.exit()
+
 
 
 	def _check_keyup_events(self, event):			

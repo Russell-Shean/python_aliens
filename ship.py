@@ -11,6 +11,9 @@ class Ship:
 
 		# get the screen's rectangle
 		self.screen = ai_game.screen
+		self.settings = ai_game.settings
+
+
 		self.screen_rect = ai_game.screen.get_rect()
 
 		# load the gnome and get its bounding rectangle
@@ -21,19 +24,40 @@ class Ship:
 		# always start ships at the bottom of the screen
 		self.rect.midbottom = self.screen_rect.midbottom
 
+		# Store a decimal value for the ship's horizontal position
+		self.x = float(self.rect.x)
+		self.y = float(self.rect.y)
+
 
 		# add a flag to check for movement
 		self.moving_right = False
 		self.moving_left = False
+		self.moving_up = False
+		self.moving_down = False
+
+
+	# Now we define an update method for general updatings
 
 
 	def update_position(self):
 		"""update the ship's position if the moving flag is true"""
+
+		# update the ship's x value instead of rect
 		if self.moving_right:
-			self.rect.x += 1
+			self.x += self.settings.ship_speed
 
 		if self.moving_left:
-			self.rect.x -= 1
+			self.x -= self.settings.ship_speed
+
+		if self.moving_up:
+			self.y -= self.settings.ship_speed
+
+		if self.moving_down:
+			self.y += self.settings.ship_speed
+
+		# update rect object from self.x
+		self.rect.x = self.x
+		self.rect.y = self.y
 
 	
 	def blitme(self):

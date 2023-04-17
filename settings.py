@@ -17,7 +17,7 @@ class Settings:
 		self.bullet_speed = 1.0
 		self.bullet_width = 3
 		self.bullet_height = 15
-		self.bullet_color = rgb(220, 129, 160)
+		self.bullet_color = (220, 129, 160)
 
 		# oranges settings
 		self.orange_speed = 1.0

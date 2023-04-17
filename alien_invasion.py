@@ -7,6 +7,8 @@ import pygame
 # Import the Settings class from the settings module
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
+from oranges import Orange
 
 # Define an alien invasion class
 class AlienInvasion:
@@ -47,6 +49,12 @@ class AlienInvasion:
 		# Add the Ship class as an attribute to the game
 		self.ship = Ship(self)
 
+		# add bullets together as a group
+		self.bullets = pygame.sprite.Group()
+
+		# vestigal thing for oranges
+		self.oranges = pygame.sprite.Group()
+
 
 	def run_game(self):
 		"""This method actually starts and runs the game inside the window"""
@@ -59,6 +67,10 @@ class AlienInvasion:
 			self._update_screen()
 			# move the ship to the right
 			self.ship.update_position()
+
+			# check bullets and oranges
+			self.bullets.update()
+			self.oranges.update()
 
 	
 	def _check_events(self):
@@ -112,6 +124,12 @@ class AlienInvasion:
 		elif event.key ==pygame.K_x:
 			sys.exit()
 
+		elif event.key == pygame.K_SPACE:
+			self._fire_bullet()
+
+		elif event.key == pygame.K_o:
+			self._fire_orange()
+
 
 
 	def _check_keyup_events(self, event):			
@@ -132,6 +150,26 @@ class AlienInvasion:
 
 
 
+	# This method fires bullets
+
+	def _fire_bullet(self):
+		"""create a new bullet and add it to the bullet group"""
+		new_bullet = Bullet(self)
+
+		self.bullets.add(new_bullet)
+
+
+	def _fire_orange(self):
+		"""add a new orange and add it to the orange group"""
+		new_orange = Orange(self)
+
+		self.oranges.add(new_orange)
+
+
+
+
+
+
 
 
 	def _update_screen(self):
@@ -142,6 +180,14 @@ class AlienInvasion:
 
 		# draw the ship
 		self.ship.blitme()
+
+		# draw bullets
+		for bullet in self.bullets.sprites():
+			bullet.draw_bullet()
+
+		# draw oranges
+		for orange in self.oranges.sprites():
+			orange.draw_orange()
 
 		# draw the most recent screen
 		pygame.display.flip()

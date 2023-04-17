@@ -72,6 +72,15 @@ class AlienInvasion:
 			self.bullets.update()
 			self.oranges.update()
 
+			# get rid of old bullets and oranges
+			for bullet in self.bullets.copy():
+				if bullet.rect.bottom <= 0:
+					self.bullets.remove(bullet)
+
+			for orange in self.oranges.copy():
+				if orange.rect.bottom <= 0:
+					self.oranges.remove(orange)
+
 	
 	def _check_events(self):
 		"""respond to key presses and mouse events"""
@@ -121,13 +130,13 @@ class AlienInvasion:
 			# Move ship down
 			self.ship.moving_down = True
 
-		elif event.key ==pygame.K_x:
+		elif event.key ==pygame.K_q:
 			sys.exit()
 
 		elif event.key == pygame.K_SPACE:
 			self._fire_bullet()
 
-		elif event.key == pygame.K_o:
+		elif event.key == pygame.K_f:
 			self._fire_orange()
 
 

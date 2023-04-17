@@ -18,6 +18,8 @@ class Settings:
 		self.bullet_width = 3
 		self.bullet_height = 15
 		self.bullet_color = (220, 129, 160)
+		self.bullets_allowed = 3
 
 		# oranges settings
 		self.orange_speed = 1.0
+		self.oranges_allowed = 3

@@ -68,18 +68,10 @@ class AlienInvasion:
 			# move the ship to the right
 			self.ship.update_position()
 
-			# check bullets and oranges
-			self.bullets.update()
-			self.oranges.update()
+			# update projectiles
+			self._update_projectiles()
 
-			# get rid of old bullets and oranges
-			for bullet in self.bullets.copy():
-				if bullet.rect.bottom <= 0:
-					self.bullets.remove(bullet)
-
-			for orange in self.oranges.copy():
-				if orange.rect.bottom <= 0:
-					self.oranges.remove(orange)
+			
 
 	
 	def _check_events(self):
@@ -163,21 +155,40 @@ class AlienInvasion:
 
 	def _fire_bullet(self):
 		"""create a new bullet and add it to the bullet group"""
-		new_bullet = Bullet(self)
 
-		self.bullets.add(new_bullet)
+		if len(self.bullets) < self.settings.bullets_allowed:
+			new_bullet = Bullet(self)
+			self.bullets.add(new_bullet)
 
 
 	def _fire_orange(self):
 		"""add a new orange and add it to the orange group"""
-		new_orange = Orange(self)
 
-		self.oranges.add(new_orange)
-
-
-
+		if len(self.oranges) < self.settings.oranges_allowed:
+			new_orange = Orange(self)
+			self.oranges.add(new_orange)
 
 
+
+	def _update_projectiles(self):
+		"""update position of bullets and delete old ones"""
+
+		# check bullets and oranges
+		self.bullets.update()
+		self.oranges.update()
+		
+
+			# get rid of old bullets and oranges
+		for bullet in self.bullets.copy():
+			if bullet.rect.bottom <= 0:
+				self.bullets.remove(bullet)
+
+
+		for orange in self.oranges.copy():
+			if orange.rect.bottom <= 0:
+				self.oranges.remove(orange)
+
+		
 
 
 

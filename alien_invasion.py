@@ -9,6 +9,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from oranges import Orange
+from bigfeets import Bigfoot
 
 # Define an alien invasion class
 class AlienInvasion:
@@ -54,6 +55,10 @@ class AlienInvasion:
 
 		# vestigal thing for oranges
 		self.oranges = pygame.sprite.Group()
+
+		self.bigfeets = pygame.sprite.Group()
+
+		self._create_fleet()
 
 
 	def run_game(self):
@@ -188,6 +193,16 @@ class AlienInvasion:
 			if orange.rect.bottom <= 0:
 				self.oranges.remove(orange)
 
+
+
+
+	def _create_fleet(self):
+		"""create a troup of bigfeets"""
+		# make a bigfoot
+
+		bigfoot = Bigfoot(self)
+		self.bigfeets.add(bigfoot)
+
 		
 
 
@@ -208,6 +223,9 @@ class AlienInvasion:
 		# draw oranges
 		for orange in self.oranges.sprites():
 			orange.draw_orange()
+
+		# draw them bigfeets
+		self.bigfeets.draw(self.screen)
 
 		# draw the most recent screen
 		pygame.display.flip()

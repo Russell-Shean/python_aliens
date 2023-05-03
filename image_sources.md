@@ -8,3 +8,6 @@ Image by <a href="https://pixabay.com/users/openclipart-vectors-30363/?utm_sourc
 
 # orange
 https://clipartix.com/orange-clipart-image-55466/ 
+
+# poop pile
+<a href="https://www.vecteezy.com/free-vector/poop-emoji">Poop Emoji Vectors by Vecteezy</a>

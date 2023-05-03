@@ -9,6 +9,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from oranges import Orange
+from poops import Poop
 from bigfeets import Bigfoot
 
 # Define an alien invasion class
@@ -55,6 +56,8 @@ class AlienInvasion:
 
 		# vestigal thing for oranges
 		self.oranges = pygame.sprite.Group()
+
+		self.poops = pygame.sprite.Group()
 
 		self.bigfeets = pygame.sprite.Group()
 
@@ -136,6 +139,9 @@ class AlienInvasion:
 		elif event.key == pygame.K_f:
 			self._fire_orange()
 
+		elif event.key == pygame.K_d:
+			self._drop_poop()
+
 
 
 	def _check_keyup_events(self, event):			
@@ -174,6 +180,14 @@ class AlienInvasion:
 			self.oranges.add(new_orange)
 
 
+	def _drop_poop(self):
+		"""drop and new poop and add it to the pile"""
+
+		if len(self.poops) < self.settings.poops_allowed:
+			new_poop = Poop(self)
+			self.poops.add(new_poop)
+
+
 
 	def _update_projectiles(self):
 		"""update position of bullets and delete old ones"""
@@ -181,9 +195,10 @@ class AlienInvasion:
 		# check bullets and oranges
 		self.bullets.update()
 		self.oranges.update()
+		self.poops.update()
 		
 
-			# get rid of old bullets and oranges
+		# get rid of old bullets and oranges
 		for bullet in self.bullets.copy():
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
@@ -194,13 +209,40 @@ class AlienInvasion:
 				self.oranges.remove(orange)
 
 
+		for poop in self.poops.copy():
+			if poop.rect.bottom >= self.settings.screen_height + 100:
+				self.poops.remove(poop)
+
+
 
 
 	def _create_fleet(self):
-		"""create a troup of bigfeets"""
+		"""create a troupe of bigfeets"""
 		# make a bigfoot
-
 		bigfoot = Bigfoot(self)
+
+		# define bigfoot width
+		bigfoot_width = bigfoot.rect.width
+
+		# define available space
+		available_space_x = self.settings.screen_width - bigfoot_width
+		number_bigfoot_x = available_space_x // bigfoot_width
+
+
+		# Create the first row of aliens
+		for bigfoot_number in range(number_bigfoot_x):
+			self._create_bigfoot(bigfoot_number)
+
+
+
+	def _create_bigfoot(self, bigfoot_number):
+		"""Create a bigfoot and put in a row"""
+		bigfoot = Bigfoot(self)
+		# define bigfoot width
+		bigfoot_width = bigfoot.rect.width
+
+		bigfoot.x = bigfoot_width + 1.1 * bigfoot_width * bigfoot_number
+		bigfoot.rect.x = bigfoot.x
 		self.bigfeets.add(bigfoot)
 
 		
@@ -223,6 +265,10 @@ class AlienInvasion:
 		# draw oranges
 		for orange in self.oranges.sprites():
 			orange.draw_orange()
+
+		# draw poops
+		for poop in self.poops.sprites():
+			poop.draw_poop()
 
 		# draw them bigfeets
 		self.bigfeets.draw(self.screen)

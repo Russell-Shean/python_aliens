@@ -23,3 +23,7 @@ class Settings:
 		# oranges settings
 		self.orange_speed = 1.0
 		self.oranges_allowed = 3
+
+		# poop settings
+		self.poop_speed = 1.0
+		self.poops_allowed = 3

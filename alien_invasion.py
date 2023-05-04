@@ -220,6 +220,7 @@ class AlienInvasion:
 		"""create a troupe of bigfeets"""
 		# make a bigfoot
 		bigfoot = Bigfoot(self)
+		bigfoot_width, bigfoot_height = bigfoot.rect.size
 
 		# define bigfoot width
 		bigfoot_width = bigfoot.rect.width
@@ -229,20 +230,32 @@ class AlienInvasion:
 		number_bigfoot_x = available_space_x // bigfoot_width
 
 
-		# Create the first row of aliens
-		for bigfoot_number in range(number_bigfoot_x):
-			self._create_bigfoot(bigfoot_number)
+		# determine how many rows will fit on screen
+		ship_height = self.ship.rect.height
+		available_space_y = (self.settings.screen_height - 
+			                      (3 * bigfoot_height) - ship_height )
+
+		number_rows = available_space_y // (2* bigfoot_height)
 
 
 
-	def _create_bigfoot(self, bigfoot_number):
+		# Create a full fleet of aliens
+		for row_number in range(number_rows):
+			# Create the first row of aliens
+			for bigfoot_number in range(number_bigfoot_x):
+				self._create_bigfoot(bigfoot_number, row_number)
+
+
+
+	def _create_bigfoot(self, bigfoot_number, row_number):
 		"""Create a bigfoot and put in a row"""
 		bigfoot = Bigfoot(self)
 		# define bigfoot width
-		bigfoot_width = bigfoot.rect.width
+		bigfoot_width, bigfoot_height = bigfoot.rect.size
 
-		bigfoot.x = bigfoot_width + 1.1 * bigfoot_width * bigfoot_number
+		bigfoot.x = bigfoot_width + 2 * bigfoot_width * bigfoot_number
 		bigfoot.rect.x = bigfoot.x
+		bigfoot.rect.y = bigfoot_height + 2 *bigfoot.rect.height * row_number
 		self.bigfeets.add(bigfoot)
 
 		

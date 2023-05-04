@@ -40,7 +40,7 @@ class Poop(Sprite):
 		if self.rect.y < 1:
 			self.speed = self.settings.bullet_speed 
 		else:
-			self.speed = self.settings.bullet_speed * .005 * self.rect.y
+			self.speed = self.settings.bullet_speed * .002 * self.rect.y
 
 		# update the decimal position
 		# self.y += (self.settings.bullet_speed * 1.1 * self.rect.y) + 1

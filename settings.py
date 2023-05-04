@@ -27,3 +27,7 @@ class Settings:
 		# poop settings
 		self.poop_speed = 1.0
 		self.poops_allowed = 3
+
+		# bigfoot settings
+		self.bigfoot_speed = 1.0
+

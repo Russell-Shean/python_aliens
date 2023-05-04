@@ -79,6 +79,8 @@ class AlienInvasion:
 			# update projectiles
 			self._update_projectiles()
 
+			self._update_bigfoots()
+
 			
 
 	
@@ -255,7 +257,7 @@ class AlienInvasion:
 
 		bigfoot.x = bigfoot_width + 2 * bigfoot_width * bigfoot_number
 		bigfoot.rect.x = bigfoot.x
-		bigfoot.rect.y = bigfoot_height + 2 *bigfoot.rect.height * row_number
+		bigfoot.rect.y = bigfoot_height + 2 * bigfoot.rect.height * row_number
 		self.bigfeets.add(bigfoot)
 
 		
@@ -288,6 +290,16 @@ class AlienInvasion:
 
 		# draw the most recent screen
 		pygame.display.flip()
+
+
+
+
+	def _update_bigfoots(self):
+		"""update the position of all the bigfoots in the troupe"""
+		self.bigfeets.update()
+
+
+
 
 
 

@@ -79,7 +79,7 @@ class AlienInvasion:
 			# update projectiles
 			self._update_projectiles()
 
-			self._update_bigfoots()
+			self._update_bigfeets()
 
 			
 
@@ -217,6 +217,19 @@ class AlienInvasion:
 
 
 
+	def _update_bigfeets(self):
+		
+		"""
+		Check if a the fleet is at a horizontal edge, 
+		then
+		update the position of all the bigfoots in the troupe
+		"""
+		self._check_fleet_edges()
+		self.bigfeets.update()
+
+
+
+
 
 	def _create_fleet(self):
 		"""create a troupe of bigfeets"""
@@ -261,6 +274,20 @@ class AlienInvasion:
 		self.bigfeets.add(bigfoot)
 
 		
+	def _check_fleet_edges(self):
+		"""change the fleet direction flag if the aliens have reached an edge"""
+		for bigfoot in self.bigfeets.sprites():
+			if bigfoot.check_edges():
+				self._change_fleet_direction()
+				break
+
+
+	def _change_fleet_direction(self):
+		"""drop the entire fleet vertically and change the horizontal direction"""
+		for bigfoot in self.bigfeets.sprites():
+			bigfoot.rect.y += self.settings.fleet_drop_speed 
+
+		self.settings.fleet_direction *= -1
 
 
 
@@ -294,9 +321,6 @@ class AlienInvasion:
 
 
 
-	def _update_bigfoots(self):
-		"""update the position of all the bigfoots in the troupe"""
-		self.bigfeets.update()
 
 
 

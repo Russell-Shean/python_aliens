@@ -27,7 +27,18 @@ class Bigfoot(Sprite):
 		self.x = float(self.rect.x)
 
 
+	def check_edges(self):
+		"""Return True if Alien is at edge of screen"""
+		screen_rect = self.screen.get_rect()
+
+		if self.rect.right >= screen_rect.right + 500 or self.rect.left <= -500 :
+			return True
+
+
 	def update(self):
-		"""Move the alient to the right."""
-		self.x += self.settings.bigfoot_speed
+		"""Move the alient to the right or left"""
+		self.x += (self.settings.bigfoot_speed * self.settings.fleet_direction ) 
 		self.rect.x = self.x
+
+
+

@@ -29,5 +29,10 @@ class Settings:
 		self.poops_allowed = 3
 
 		# bigfoot settings
-		self.bigfoot_speed = 1.0
+		self.bigfoot_speed = 0.5
+		self.fleet_drop_speed = 10
+
+		# fleet direction: 1 is right, -1 is left
+		self.fleet_direction = 1
+
 

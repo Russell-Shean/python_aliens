@@ -216,6 +216,17 @@ class AlienInvasion:
 				self.poops.remove(poop)
 
 
+		# check to see if any projectiles have hit aliens and if so remove the aliens
+		collisions_bullets = pygame.sprite.groupcollide(
+			self.bullets, self.bigfeets, True, True)
+
+		collisions_oranges = pygame.sprite.groupcollide(
+			self.oranges, self.bigfeets, False, True)
+
+
+		collisions_poops = pygame.sprite.groupcollide(
+			self.poops, self.bigfeets, False, True)
+
 
 	def _update_bigfeets(self):
 		

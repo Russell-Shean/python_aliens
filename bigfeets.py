@@ -4,7 +4,7 @@ import pygame
 from pygame.sprite import Sprite
 
 class Bigfoot(Sprite):
-	"""A Myfical Mafical Woodland Creature Frolicking through the mossy forests of the PNW"""
+	"""A magical Woodland Creature Frolicking through the mossy forests"""
 
 	def __init__(self, ai_game):
 		"""Initialize some Bigfeeeetssss!!"""

@@ -215,6 +215,12 @@ class AlienInvasion:
 			if poop.rect.bottom >= self.settings.screen_height + 100:
 				self.poops.remove(poop)
 
+		self._detect_bigfoot_projectile_collisions()
+
+
+
+	def _detect_bigfoot_projectile_collisions(self):
+
 
 		# check to see if any projectiles have hit aliens and if so remove the aliens
 		collisions_bullets = pygame.sprite.groupcollide(
@@ -247,6 +253,11 @@ class AlienInvasion:
 		"""
 		self._check_fleet_edges()
 		self.bigfeets.update()
+
+
+		# check for bigfoot gnome collisions
+		if pygame.sprite.spritecollideany(self.ship, self.bigfeets):
+			print("Abandon ship!! We've been hit!!")
 
 
 

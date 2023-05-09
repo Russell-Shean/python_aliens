@@ -228,6 +228,16 @@ class AlienInvasion:
 			self.poops, self.bigfeets, False, True)
 
 
+		# remove bullets and recreate fleet after fleet destruction
+		if not self.bigfeets:
+			# Destroy existing projectiles and create new fleet.
+			self.bullets.empty()
+			self.oranges.empty()
+			self.poops.empty()
+
+			self._create_fleet()
+
+
 	def _update_bigfeets(self):
 		
 		"""

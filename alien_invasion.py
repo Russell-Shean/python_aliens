@@ -2,10 +2,15 @@
 
 #import modules
 import sys
+from time import sleep
+
+
 import pygame
 
 # Import the Settings class from the settings module
 from settings import Settings
+from game_stats import GameStats
+
 from ship import Ship
 from bullet import Bullet
 from oranges import Orange
@@ -44,6 +49,9 @@ class AlienInvasion:
 
 		# This sets the title that shoows across the top of the window?
 		pygame.display.set_caption("The Aliens are invading!       Can you help??")
+
+		# create a game statistics instance to store game data
+		self.stats = GameStats(self)
 
 		# set a new background color
 		self.bg_color = (self.settings.bg_color)

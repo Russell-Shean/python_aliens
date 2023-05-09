@@ -265,7 +265,33 @@ class AlienInvasion:
 
 		# check for bigfoot gnome collisions
 		if pygame.sprite.spritecollideany(self.ship, self.bigfeets):
-			print("Abandon ship!! We've been hit!!")
+			# print("Abandon ship!! We've been hit!!")
+			self._ship_hit()
+
+
+		self._check_bigfoot_bottom()
+
+	def _ship_hit(self):
+		"""Respond to the ship being hit by an alien"""
+
+		# reduce the number of ships left
+		self.stats.ships_left -= 1
+
+		# Get rid of any remaiing aliens and bullets.
+		self.bigfeets.empty()
+		self.bullets.empty()
+		self.oranges.empty()
+		self.poops.empty()
+
+		# Create a new fleet and center the ship
+		self._create_fleet()
+		self.ship._center_ship()
+
+		# Pause
+		sleep(0.5)
+
+
+
 
 
 
@@ -328,6 +354,17 @@ class AlienInvasion:
 			bigfoot.rect.y += self.settings.fleet_drop_speed 
 
 		self.settings.fleet_direction *= -1
+
+
+
+	def _check_bigfoot_bottom(self):
+		"""Check if any aliens have reached the bottom of the screen."""
+		screen_rect = self.screen.get_rect()
+		for bigfoot in self.bigfeets.sprites():
+			if bigfoot.rect.bottom >= screen_rect.bottom:
+				# Treat this the same as if the ship got hit. 
+				self._ship_hit()
+				break
 
 
 

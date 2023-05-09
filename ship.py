@@ -64,3 +64,13 @@ class Ship:
 	def blitme(self):
 		"""draw the gnome at its starting location"""
 		self.screen.blit(self.image, self.rect)
+
+
+	def _center_ship(self):
+		"""
+		Center the ship on the screen
+		At the bottom
+		"""
+		self.rect.midbottom = self.screen_rect.midbottom
+		self.x = float(self.rect.x)
+		self.y = float(self.rect.y)

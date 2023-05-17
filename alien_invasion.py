@@ -17,6 +17,8 @@ from oranges import Orange
 from poops import Poop
 from bigfeets import Bigfoot
 
+from button import Button
+
 # Define an alien invasion class
 class AlienInvasion:
 	"""The is the overall class for the entire game"""
@@ -71,6 +73,8 @@ class AlienInvasion:
 
 		self._create_fleet()
 
+		# add a play button
+		self.play_button = Button(self, "Would you like to...Play a GAME?!")
 
 	def run_game(self):
 		"""This method actually starts and runs the game inside the window"""
@@ -403,6 +407,16 @@ class AlienInvasion:
 
 		# draw them bigfeets
 		self.bigfeets.draw(self.screen)
+
+
+		# draw a play button if the game is inactive
+		if not self.stats.game_active:
+			self.play_button.draw_button()
+
+
+
+
+
 
 		# draw the most recent screen
 		pygame.display.flip()

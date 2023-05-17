@@ -74,7 +74,7 @@ class AlienInvasion:
 		self._create_fleet()
 
 		# add a play button
-		self.play_button = Button(self, "Would you like to...Play a GAME?!")
+		self.play_button = Button(self, "Start Game")
 
 	def run_game(self):
 		"""This method actually starts and runs the game inside the window"""
@@ -121,6 +121,21 @@ class AlienInvasion:
 
 			elif event.type == pygame.KEYUP:
 				self._check_keyup_events(event)
+
+
+			elif event.type == pygame.MOUSEBUTTONDOWN:
+				mouse_pos = pygame.mouse.get_pos()
+				self._check_play_button(mouse_pos)
+
+
+
+	def _check_play_button(self, mouse_pos):
+		"""Start the game if the play clicks the play button"""
+
+		# if the mouse click's position overlaps the play button's position change the game status to active:
+
+		if self.play_button.rect.collidepoint(mouse_pos):
+			self.stats.game_active = True
 
 
 

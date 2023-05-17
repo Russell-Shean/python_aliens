@@ -79,15 +79,22 @@ class AlienInvasion:
 
 			# creating a check events method
 			self._check_events()
-			# update events
+
+
+			if self.stats.game_active:
+				# update events
+				
+
+				# move the ship to the right
+				self.ship.update_position()
+
+				# update projectiles
+				self._update_projectiles()
+
+				self._update_bigfeets()
+
+
 			self._update_screen()
-			# move the ship to the right
-			self.ship.update_position()
-
-			# update projectiles
-			self._update_projectiles()
-
-			self._update_bigfeets()
 
 			
 
@@ -274,21 +281,26 @@ class AlienInvasion:
 	def _ship_hit(self):
 		"""Respond to the ship being hit by an alien"""
 
-		# reduce the number of ships left
-		self.stats.ships_left -= 1
+		if self.stats.ships_left > 0:
+			# reduce the number of ships left
+			self.stats.ships_left -= 1
 
-		# Get rid of any remaiing aliens and bullets.
-		self.bigfeets.empty()
-		self.bullets.empty()
-		self.oranges.empty()
-		self.poops.empty()
+			# Get rid of any remaiing aliens and bullets.
+			self.bigfeets.empty()
+			self.bullets.empty()
+			self.oranges.empty()
+			self.poops.empty()
 
-		# Create a new fleet and center the ship
-		self._create_fleet()
-		self.ship._center_ship()
+			# Create a new fleet and center the ship
+			self._create_fleet()
+			self.ship._center_ship()
 
-		# Pause
-		sleep(0.5)
+			# Pause
+			sleep(0.5)
+
+
+		else: 
+			self.stats.game_active = False
 
 
 

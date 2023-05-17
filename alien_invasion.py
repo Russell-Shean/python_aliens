@@ -76,6 +76,9 @@ class AlienInvasion:
 		# add a play button
 		self.play_button = Button(self, "Start Game")
 
+
+
+
 	def run_game(self):
 		"""This method actually starts and runs the game inside the window"""
 
@@ -135,7 +138,25 @@ class AlienInvasion:
 		# if the mouse click's position overlaps the play button's position change the game status to active:
 
 		if self.play_button.rect.collidepoint(mouse_pos):
+
+			# Reset game statistics (variable settings?)
+			self.stats.reset_stats()
+
 			self.stats.game_active = True
+
+			# remove extra aliens and projectiles
+			self.bigfeets.empty()
+
+			self.bullets.empty()
+			self.oranges.empty()
+			self.poops.empty()
+
+			#creat aliens and center ship
+			self._create_fleet()
+			self.ship._center_ship()
+
+
+
 
 
 

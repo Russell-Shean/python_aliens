@@ -141,8 +141,10 @@ class AlienInvasion:
 
 		# if the mouse click's position overlaps the play button's position  and the game isn't already active reset the game and change the game status to active:
 
-			# Reset game statistics (variable settings?)
-			self.stats.reset_stats()
+			# Reset game statistics settings whatever (variable settings?)
+			# self.stats.reset_stats()
+			self.settings.create_dynamic_settings()
+
 
 			self.stats.game_active = True
 
@@ -153,9 +155,14 @@ class AlienInvasion:
 			self.oranges.empty()
 			self.poops.empty()
 
-			#creat aliens and center ship
+			#create aliens and center ship
 			self._create_fleet()
 			self.ship._center_ship()
+
+			# hide the mouse when the game is active
+			pygame.mouse.set_visible(False)
+
+
 
 
 
@@ -300,6 +307,9 @@ class AlienInvasion:
 
 			self._create_fleet()
 
+			# up the speed each time a new fleet is regenerated
+			self.settings.increase_speed()
+
 
 	def _update_bigfeets(self):
 		
@@ -343,6 +353,7 @@ class AlienInvasion:
 
 		else: 
 			self.stats.game_active = False
+			pygame.mouse.set_visible(True)
 
 
 

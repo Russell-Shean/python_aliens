@@ -10,6 +10,7 @@ import pygame
 # Import the Settings class from the settings module
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 
 from ship import Ship
 from bullet import Bullet
@@ -52,8 +53,11 @@ class AlienInvasion:
 		# This sets the title that shoows across the top of the window?
 		pygame.display.set_caption("The Aliens are invading!       Can you help??")
 
+
+		# Create an instance of the scoreboard and
 		# create a game statistics instance to store game data
 		self.stats = GameStats(self)
+		self.sb = Scoreboard(self)
 
 		# set a new background color
 		self.bg_color = (self.settings.bg_color)
@@ -456,6 +460,9 @@ class AlienInvasion:
 
 		# draw them bigfeets
 		self.bigfeets.draw(self.screen)
+
+		# draw the scoreboard on the screen
+		self.sb.show_score()
 
 
 		# draw a play button if the game is inactive

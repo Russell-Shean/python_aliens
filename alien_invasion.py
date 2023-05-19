@@ -226,7 +226,8 @@ class AlienInvasion:
 			if self.stats.high_score > self.stats.high_score_historical:
 
 				new_row = {'date':str(date.today()),
-					       'score':self.stats.high_score}
+					       'score':self.stats.high_score,
+					       'level': self.stats.level}
 
 					     #  df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 

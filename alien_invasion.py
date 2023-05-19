@@ -125,7 +125,8 @@ class AlienInvasion:
 				if self.stats.high_score > self.stats.high_score_historical:
 
 					new_row = {'date':str(date.today()),
-					           'score':self.stats.high_score}
+					           'score':self.stats.high_score,
+					           'level': self.stats.level}
 
 					     #  df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
@@ -169,6 +170,7 @@ class AlienInvasion:
 			self.stats.game_active = True
 			# reset the score
 			self.sb.prep_score()
+			self.sb.prep_level()
 
 			# remove extra aliens and projectiles
 			self.bigfeets.empty()
@@ -354,6 +356,11 @@ class AlienInvasion:
 
 			# up the speed each time a new fleet is regenerated
 			self.settings.increase_speed()
+
+
+			# increase the level
+			self.stats.level += 1
+			self.sb.prep_level()
 
 
 	def _update_bigfeets(self):

@@ -46,4 +46,5 @@ class GameStats:
 		"""reset stats at the biggening of a new game"""
 		self.ships_left = self.settings.ship_limit
 		self.score = 0
+		self.level = 1
 	

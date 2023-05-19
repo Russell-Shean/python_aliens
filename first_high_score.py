@@ -7,7 +7,8 @@ from datetime import date
 
 high_scores_dict = {
 	'date': [date.today(), date.today()],
-	'score': [0, 200]
+	'score': [0, 200],
+	'level': [1, 1]
 }
 
 

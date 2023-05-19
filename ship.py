@@ -2,12 +2,14 @@
 
 # import the pygame module
 import pygame
+from pygame.sprite import Sprite
 
-class Ship:
+class Ship(Sprite):
 	"""A class for the ships, only we're doing garden gnomes"""
 
 	def __init__(self, ai_game):
 		"""create the ship and define its start position"""
+		super().__init__()
 
 		# get the screen's rectangle
 		self.screen = ai_game.screen

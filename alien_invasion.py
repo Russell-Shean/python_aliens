@@ -3,6 +3,8 @@
 #import modules
 import sys
 from time import sleep
+from datetime import date
+import pandas
 
 
 import pygame
@@ -119,6 +121,19 @@ class AlienInvasion:
 			# If the event is quit we quit the game
 			if event.type == pygame.QUIT:
 
+				# before quiting, check to see if there's a new high score and write it to file before quiting
+				if self.stats.high_score > self.stats.high_score_historical:
+
+					new_row = {'date':str(date.today()),
+					           'score':self.stats.high_score}
+
+					     #  df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+					df = pandas.concat([self.stats.high_score_data, pandas.DataFrame([new_row])], ignore_index=True)
+
+					# write to file
+					df.to_csv("high_score.csv", index = False)
+
 				# This must be a system command to exit the current process
 				sys.exit()
 
@@ -204,6 +219,20 @@ class AlienInvasion:
 			self.ship.moving_down = True
 
 		elif event.key ==pygame.K_q:
+
+			# before quiting, check to see if there's a new high score and write it to file before quiting
+			if self.stats.high_score > self.stats.high_score_historical:
+
+				new_row = {'date':str(date.today()),
+					       'score':self.stats.high_score}
+
+					     #  df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+				df = pandas.concat([self.stats.high_score_data, pandas.DataFrame([new_row])], ignore_index=True)
+
+				# write to file
+				df.to_csv("high_score.csv", index = False)
+
 			sys.exit()
 
 		elif event.key == pygame.K_SPACE:
@@ -311,6 +340,7 @@ class AlienInvasion:
 		if collisions_poops or collisions_bullets or collisions_oranges:
 			self.stats.score += self.settings.alien_points
 			self.sb.prep_score()
+			self.sb.check_high_score()
 
 
 		# remove bullets and recreate fleet after fleet destruction

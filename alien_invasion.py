@@ -141,16 +141,19 @@ class AlienInvasion:
 
 		button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
-		if button_clicked and not self.stats.game_active:
+
+		if (button_clicked or restart_with_space) and not self.stats.game_active:
 
 		# if the mouse click's position overlaps the play button's position  and the game isn't already active reset the game and change the game status to active:
 
 			# Reset game statistics settings whatever (variable settings?)
-			# self.stats.reset_stats()
+			self.stats.reset_stats()
 			self.settings.create_dynamic_settings()
 
 
 			self.stats.game_active = True
+			# reset the score
+			self.sb.prep_score()
 
 			# remove extra aliens and projectiles
 			self.bigfeets.empty()
@@ -204,7 +207,11 @@ class AlienInvasion:
 			sys.exit()
 
 		elif event.key == pygame.K_SPACE:
-			self._fire_bullet()
+			if self.stats.game_active :
+				self._fire_bullet()
+			else:
+				restart_with_space = True
+
 
 		elif event.key == pygame.K_f:
 			self._fire_orange()

@@ -36,6 +36,9 @@ class Settings:
 		# how fast things speed up
 		self.speedup_scale = 1.1
 
+		# how fast points increase
+		self.score_scale = 1.5 
+
 
 		self.create_dynamic_settings()
 
@@ -64,11 +67,14 @@ class Settings:
 
 
 	def increase_speed(self):
-		"""Increase speed settings."""
+		"""Increase speed settings. And now point values too!"""
 
 		self.ship_speed *=self.speedup_scale
 		self.bullet_speed *=self.speedup_scale
 		self.orange_speed *=self.speedup_scale
 		self.poop_speed *=self.speedup_scale
 		self.bigfoot_speed *=self.speedup_scale
+
+		self.alien_points = int( self.alien_points * self.score_scale )
+
 
